@@ -46,6 +46,11 @@ public class JudgeServiceImpl implements JudgeService {
     @Value("${codesandbox.type: example}")
     private String type;
 
+    /**
+     *  执行判题服务
+     * @param questionSubmitId
+     * @return
+     */
     @Override
     public QuestionSubmit doJudge(long questionSubmitId) {
 //      1）传入题目的提交id,获取到对应的题目、提交信息（包含代码、编程语言）
@@ -58,7 +63,7 @@ public class JudgeServiceImpl implements JudgeService {
         if(question == null){
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "题目不存在");
         }
-        // 2)如果题目提交状态不为等待中，就不用重复执行了
+        // 2) 如果题目提交状态不为等待中，就不用重复执行了
         if(!questionSubmit.getStatus().equals(QuestionSubmitStatusEnum.WAITING.getValue())){
             throw new BusinessException(ErrorCode.OPERATION_ERROR, "题目正在判题中");
         }
@@ -89,10 +94,10 @@ public class JudgeServiceImpl implements JudgeService {
         List<String> outputList = executeCodeResponse.getOutputList();
 //      5)  根据沙箱的执行结果，设置题目的判题状态和信息
         /*
-         5.1 先判断沙箱执行结果输出数量与预期输出数量是否相等
-         5.2 依次判断每一项输出和预期输出是否相等
-         5.3 判题题目的限制是否符合要求
-         5.4 其他异常情况
+            5.1 先判断沙箱执行结果输出数量与预期输出数量是否相等
+            5.2 依次判断每一项输出和预期输出是否相等
+            5.3 判题题目的限制是否符合要求
+            5.4 其他异常情况
          */
         JudgeContext judgeContext = new JudgeContext();
         judgeContext.setJudgeInfo(executeCodeResponse.getJudgeInfo());

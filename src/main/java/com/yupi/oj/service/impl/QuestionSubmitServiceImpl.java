@@ -86,7 +86,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         }
         // 是否已提交
         long userId = loginUser.getId();
-        // 每个用户串行提交
+        // 每个用户串行提交, 将前端提交的题目信息插入到数据库表 question_submit 中
         QuestionSubmit questionSubmit = new QuestionSubmit();
         questionSubmit.setUserId(userId);
         questionSubmit.setQuestionId(questionId);
@@ -101,7 +101,7 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
             throw new BusinessException(ErrorCode.SYSTEM_ERROR,"数据插入失败");
         }
         Long questionSubmitId = questionSubmit.getId();
-        // 执行判题服务
+        // Todo 执行判题服务
         CompletableFuture.runAsync(()->{
             judgeService.doJudge(questionSubmitId);
                 });

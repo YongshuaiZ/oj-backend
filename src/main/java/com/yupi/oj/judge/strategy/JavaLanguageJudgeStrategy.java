@@ -34,8 +34,12 @@ public class JavaLanguageJudgeStrategy implements JudgeStrategy {
             return judgeInfoResponse;
         }
 //        5.2 依次判断每一项输出和预期输出是否相等
-        for(int i=0;i < judgeCaseList.size();i++){
+        for(int i=0; i < judgeCaseList.size(); i++){
             JudgeCase judgeCase = judgeCaseList.get(i);
+            System.out.println(" ************************************ ");
+            System.out.println("judgeCase: " + judgeCase.getOutput());
+            System.out.println("outputList： " + outputList.get(i));
+            System.out.println(" ************************************ ");
             if(!judgeCase.getOutput().equals(outputList.get(i))){
                 judgeInfoMessageEnum = JudgeInfoMessageEnum.WRONG_ANSWER;
                 judgeInfoResponse.setMessage(judgeInfoMessageEnum.getValue());

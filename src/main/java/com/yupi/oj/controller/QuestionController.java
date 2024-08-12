@@ -152,7 +152,7 @@ public class QuestionController {
         return ResultUtils.success(result);
     }
     /**
-     * 根据 id 获取(封装类)
+     * 根据 id 获取 (封装类)
      *
      * @param id
      * @return
@@ -292,7 +292,6 @@ public class QuestionController {
         boolean result = questionService.updateById(question);
         return ResultUtils.success(result);
     }
-
 
     /**
      * 提交题目

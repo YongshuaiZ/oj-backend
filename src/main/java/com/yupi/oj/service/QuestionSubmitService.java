@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
 * @author zhu
-* @description 针对表【question_submit(题目提交)】的数据库操作Service
+* @description 针对表【 question_submit_controller (题目提交)】的数据库操作Service
 * @createDate 2023-10-31 15:51:15
 */
 public interface QuestionSubmitService extends IService<QuestionSubmit> {
